@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Map;
-
 @RestController
 @RequestMapping("/api")
 public class Controller {
@@ -40,7 +37,7 @@ public class Controller {
         this.gifService = gifService;
     }
 
-    @GetMapping(value = "/getgif/{code}", produces = "application/gif")
+    @GetMapping(value = "/getgif/{code}", produces = "image/gif")
     public ResponseEntity<byte[]> getGif(@PathVariable String code) {
         int gifKey = -101;
         String gifTag = this.errorTag;

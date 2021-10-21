@@ -24,8 +24,7 @@ public class GifServiceImp implements GifService {
     @Override
     public byte[] getGif(String tag) {
         String gifUrl = JsonPath.read(gifClient.getRandomGif(this.apiKey, tag), "$.data.image_original_url");
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<byte[]> response = restTemplate.getForEntity(gifUrl, byte[].class);
+        ResponseEntity<byte[]> response = new RestTemplate().getForEntity(gifUrl, byte[].class);
         return response.getBody();
     }
 }

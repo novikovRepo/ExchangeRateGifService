@@ -42,9 +42,9 @@ public class ExchangeServiceImp implements ExchangeService {
         this.refresh();
         Double prevCoefficient = this.getCoefficient(this.previous, code);
         Double currentCoefficient = this.getCoefficient(this.current, code);
-        return prevCoefficient != null && currentCoefficient != null
-                ? Double.compare(currentCoefficient, prevCoefficient)
-                : -101;
+        if (prevCoefficient != null && currentCoefficient != null)
+            return Double.compare(currentCoefficient, prevCoefficient);
+        return -101;
     }
 
     @Override
@@ -95,9 +95,8 @@ public class ExchangeServiceImp implements ExchangeService {
         Double targetRate = null;
         Double appBaseRate = null;
         Double defaultBaseRate = null;
-        Map<String, Double> map = null;
         if (rates != null && rates.getRates() != null) {
-            map = rates.getRates();
+            Map<String, Double> map = rates.getRates();
             targetRate = map.get(code);
             appBaseRate = map.get(this.base);
             defaultBaseRate = map.get(rates.getBase());
