@@ -15,4 +15,5 @@ public class Configuration {
     public SimpleDateFormat simpleDateFormatForTime() {
         return new SimpleDateFormat("yyyy-MM-dd HH");
     }
+
 }

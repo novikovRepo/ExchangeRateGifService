@@ -2,7 +2,6 @@ package com.example.exchangerategifservice.controller;
 
 import com.example.exchangerategifservice.services.implementations.ExchangeServiceImp;
 import com.example.exchangerategifservice.services.implementations.GifServiceImp;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -32,12 +31,7 @@ public class ControllerTest {
     @Value("${giphy.error}")
     private String errorTag;
 
-    private String richUrl = "https://media3.giphy.com/media/LRxuHywFl8XosgFPFp/giphy.gif";
-    private String brokeUrl = "https://media3.giphy.com/media/LRxuHywFl8XosgFPFp/giphy.gif";
-    private String whatUrl = "https://media3.giphy.com/media/LRxuHywFl8XosgFPFp/giphy.gif";
-    private String errorUrl = "https://media3.giphy.com/media/LRxuHywFl8XosgFPFp/giphy.gif";
-
-    private ObjectMapper mapper = new ObjectMapper();
+    private String someUrl = "https://media4.giphy.com/media/VG7b7sBBmeh5Q94ljE/giphy.gif";
 
     @Autowired
     private MockMvc mockMvc;
@@ -48,7 +42,7 @@ public class ControllerTest {
 
     @Test
     public void whenRich() throws Exception {
-        ResponseEntity<byte[]> response = new RestTemplate().getForEntity(richUrl, byte[].class);
+        ResponseEntity<byte[]> response = new RestTemplate().getForEntity(someUrl, byte[].class);
         Mockito.when(exchangeService.getKeyForTag(anyString())).thenReturn(1);
         Mockito.when(gifService.getGif(this.richTag)).thenReturn(response.getBody());
         mockMvc.perform(get("/api/getgif/code")
@@ -57,7 +51,7 @@ public class ControllerTest {
 
     @Test
     public void whenBroke() throws Exception {
-        ResponseEntity<byte[]> response = new RestTemplate().getForEntity(brokeUrl, byte[].class);
+        ResponseEntity<byte[]> response = new RestTemplate().getForEntity(someUrl, byte[].class);
         Mockito.when(exchangeService.getKeyForTag(anyString())).thenReturn(-1);
         Mockito.when(gifService.getGif(this.brokeTag)).thenReturn(response.getBody());
         mockMvc.perform(get("/api/getgif/code")
@@ -66,7 +60,7 @@ public class ControllerTest {
 
     @Test
     public void whenZero() throws Exception {
-        ResponseEntity<byte[]> response = new RestTemplate().getForEntity(whatUrl, byte[].class);
+        ResponseEntity<byte[]> response = new RestTemplate().getForEntity(someUrl, byte[].class);
         Mockito.when(exchangeService.getKeyForTag(anyString())).thenReturn(0);
         Mockito.when(gifService.getGif(this.whatTag)).thenReturn(response.getBody());
         mockMvc.perform(get("/api/getgif/code")
@@ -75,7 +69,7 @@ public class ControllerTest {
 
     @Test
     public void whenError() throws Exception {
-        ResponseEntity<byte[]> response = new RestTemplate().getForEntity(errorUrl, byte[].class);
+        ResponseEntity<byte[]> response = new RestTemplate().getForEntity(someUrl, byte[].class);
         Mockito.when(exchangeService.getKeyForTag(anyString())).thenReturn(-101);
         Mockito.when(gifService.getGif(this.errorTag)).thenReturn(response.getBody());
         mockMvc.perform(get("/api/getgif/code")

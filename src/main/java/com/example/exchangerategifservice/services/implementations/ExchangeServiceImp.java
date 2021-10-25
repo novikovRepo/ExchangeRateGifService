@@ -18,9 +18,9 @@ public class ExchangeServiceImp implements ExchangeService {
     private ExchangeModel previous;
     private ExchangeModel current;
 
-    private ExchangeClient exchangeClient;
-    private SimpleDateFormat date;
-    private SimpleDateFormat time;
+    private final ExchangeClient exchangeClient;
+    private final SimpleDateFormat date;
+    private final SimpleDateFormat time;
     @Value("${openexchangerates.app.id}")
     private String appId;
     @Value("${openexchangerates.base}")

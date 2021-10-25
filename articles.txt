@@ -1,0 +1,5 @@
+1. https://habr.com/ru/post/485094/
+2. https://habr.com/ru/post/444982/
+3. https://habr.com/ru/post/561520/
+4. https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html
+5. https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html
