@@ -1,16 +1,28 @@
 plugins {
     id 'org.springframework.boot' version '2.5.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'com.palantir.docker' version '0.30.0'
+    id 'com.palantir.docker-run' version '0.30.0'
     id 'java'
     id 'application'
 }
 
 group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-
+sourceCompatibility = '15'
+mainClassName = 'com.example.exchangerategifservice.ExchangeRateGifServiceApplication'
 version = '0.0.1'
-mainClassName = 'com.example.ExchangeRateGifServiceApplication'
+
+docker {
+    name "${project.name}:${project.version}"
+    files 'exchange-rate-gif-service-0.0.1.jar'
+}
+
+dockerRun {
+    name "${project.name}"
+    image "${project.name}:${project.version}"
+    ports '8080:8080'
+    clean true
+}
 
 repositories {
     mavenCentral()
@@ -24,10 +36,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation('com.jayway.jsonpath:json-path')
+    implementation 'com.jayway.jsonpath:json-path'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'junit:junit:4.12'
-
 }
 
 dependencyManagement {
