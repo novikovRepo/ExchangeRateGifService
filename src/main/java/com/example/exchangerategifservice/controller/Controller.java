@@ -37,6 +37,10 @@ public class Controller {
         this.gifService = gifService;
     }
 
+    /**
+     * @param code трехзначный код валюты, с которым будет сравниваться базовая валюта приложения
+     * @return возвращает непосредственно саму гифку из пула, зависящего от результата сравнения
+     */
     @GetMapping(value = "/getgif/{code}", produces = "image/gif")
     public ResponseEntity<byte[]> getGif(@PathVariable String code) {
         int gifKey = -101;
@@ -45,15 +49,9 @@ public class Controller {
             gifKey = exchangeService.getKeyForTag(code);
         }
         switch (gifKey) {
-            case 1:
-                gifTag = this.richTag;
-                break;
-            case -1:
-                gifTag = this.brokeTag;
-                break;
-            case 0:
-                gifTag = this.whatTag;
-                break;
+            case 1 -> gifTag = this.richTag;
+            case -1 -> gifTag = this.brokeTag;
+            case 0 -> gifTag = this.whatTag;
         }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_GIF);

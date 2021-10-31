@@ -21,6 +21,11 @@ public class GifServiceImp implements GifService {
         this.gifClient = gifClient;
     }
 
+    /**
+     * Парсинг ответа giphy для извлечения url гифки и получение объекта
+     * @param tag параметр, от которого зависит, какого типа будет гифка
+     * @return тело объекта, полученного при запросе
+     */
     @Override
     public byte[] getGif(String tag) {
         String gifUrl = JsonPath.read(gifClient.getRandomGif(this.apiKey, tag), "$.data.image_original_url");

@@ -2,6 +2,10 @@ package com.example.exchangerategifservice.model;
 
 import java.util.Map;
 
+/**
+ * Класс с геттерами и сеттерами для работы с JSON от openexchangerates
+ */
+
 public class ExchangeModel {
 
     private Integer timestamp;

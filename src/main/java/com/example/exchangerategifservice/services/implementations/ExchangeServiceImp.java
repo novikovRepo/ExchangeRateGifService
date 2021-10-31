@@ -37,6 +37,12 @@ public class ExchangeServiceImp implements ExchangeService {
         this.time = time;
     }
 
+    /**
+     * Обновляет курсы и сравнивает коэффициенты
+     * @param code трехзначный код валюты, с которым будет сравниваться базовая валюта приложения
+     * @return результат сравнения текущего и предыдущего коэффициентов
+     * Если по каким то причинам отсутствуют курсы или коэффициенты, возвращает ошибочный код
+     */
     @Override
     public int getKeyForTag(String code) {
         this.refresh();
@@ -47,6 +53,9 @@ public class ExchangeServiceImp implements ExchangeService {
         return -101;
     }
 
+    /**
+     * Обновляет все курсы
+     */
     @Override
     public void refresh() {
         long currentTime = System.currentTimeMillis();
@@ -54,6 +63,10 @@ public class ExchangeServiceImp implements ExchangeService {
         this.refreshPrevious(currentTime);
     }
 
+    /**
+     * Обновляет текущие курсы
+     * @param t время в миллисекундах
+     */
     private void refreshCurrent(long t)
     {
         if (
@@ -65,6 +78,10 @@ public class ExchangeServiceImp implements ExchangeService {
         }
     }
 
+    /**
+     * Обновление вчерашних курсов
+     * @param t время в миллисекундах
+     */
     private void refreshPrevious(long t) {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         Calendar prevCalendar = Calendar.getInstance();
@@ -90,6 +107,14 @@ public class ExchangeServiceImp implements ExchangeService {
         }
     }
 
+    /**
+     * Поскольку база при запросе может быть только USD, c помощью формулы находим отношение валюты,
+     * для которой хотим получить гиф, к базовой валюте приложения
+     * @param rates курсы валют
+     * @param code трехзначный код валюты
+     * @return коэффициент, выражающий стоимость одной единицы базовой валюты приложения, в валюте,
+     * для которой получаем гифку
+     */
     private Double getCoefficient(ExchangeModel rates, String code) {
         Double result = null;
         Double targetRate = null;
