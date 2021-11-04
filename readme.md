@@ -40,5 +40,6 @@ com.palantir.docker и com.palantir.docker-run, поэтому все что н�
 ---
 После запуска контейнера нужно воспользоваться следующей ссылкой:
 ```
-http://localhost:8080/api/getgif/{currency code}
+http://localhost:8030/api/getgif/{currency code}
 ```
+где currency code - код валюты, например USD или TRY.

@@ -4,3 +4,4 @@
 4. https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html
 5. https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html
 6. https://tomgregory.com/automating-docker-builds-with-gradle/
+7. https://www.baeldung.com/junit-5-runwith

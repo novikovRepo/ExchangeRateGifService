@@ -8,7 +8,7 @@ plugins {
 }
 
 group = 'com.example'
-sourceCompatibility = '15'
+sourceCompatibility = "11"
 mainClassName = 'com.example.exchangerategifservice.ExchangeRateGifServiceApplication'
 version = '0.0.1'
 
@@ -20,7 +20,7 @@ docker {
 dockerRun {
     name "${project.name}"
     image "${project.name}:${project.version}"
-    ports '8080:8080'
+    ports '8030:8030'
     clean true
 }
 
@@ -38,7 +38,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'com.jayway.jsonpath:json-path'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 dependencyManagement {

@@ -2,24 +2,25 @@ package com.example.exchangerategifservice.services.implementations;
 
 import com.example.exchangerategifservice.client.FeignExchangeClient;
 import com.example.exchangerategifservice.model.ExchangeModel;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ComponentScan("com.example.exchangerategifservice")
 public class ExchangeServiceImpTest {
@@ -34,7 +35,7 @@ public class ExchangeServiceImpTest {
     private ExchangeModel previous;
     private ExchangeModel current;
 
-    @Before
+    @BeforeEach
     public void initialize() {
 
         int time = 1635033599;

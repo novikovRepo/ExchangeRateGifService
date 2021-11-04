@@ -49,9 +49,15 @@ public class Controller {
             gifKey = exchangeService.getKeyForTag(code);
         }
         switch (gifKey) {
-            case 1 -> gifTag = this.richTag;
-            case -1 -> gifTag = this.brokeTag;
-            case 0 -> gifTag = this.whatTag;
+            case 1:
+                gifTag = this.richTag;
+                break;
+            case -1:
+                gifTag = this.brokeTag;
+                break;
+            case 0:
+                gifTag = this.whatTag;
+                break;
         }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_GIF);
