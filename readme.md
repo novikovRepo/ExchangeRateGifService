@@ -1,45 +1,44 @@
-Задание
+Task
 ---
 ```
-Создать сервис, который обращается к сервису курсов валют, и отдает gif в ответ:  
+Create a service that calls the exchange rate service and returns a gif in response:
 
-если курс по отношению к рублю за сегодня стал выше вчерашнего,  
-то отдаем рандомную отсюда https://giphy.com/search/rich  
-если ниже - отсюда https://giphy.com/search/broke
+if the exchange rate against the ruble for today has become higher than yesterday,
+then we give random from here https://giphy.com/search/rich
+if lower - from here https://giphy.com/search/broke
   
-Ссылки  
+Links
 
-REST API курсов валют - https://docs.openexchangerates.org/  
-REST API гифок - https://developers.giphy.com/docs/api#quick-start-guide
+Exchange rates REST API - https://docs.openexchangerates.org/
+GIF REST API - https://developers.giphy.com/docs/api#quick-start-guide
   
-Must Have
+must have
   
-Сервис на Spring Boot 2 + Java / Kotlin  
-Запросы приходят на HTTP endpoint, туда передается код валюты  
-Для взаимодействия с внешними сервисами используется Feign  
-Все параметры (валюта по отношению к которой смотрится курс,   
-адреса внешних сервисов и т.д.) вынесены в настройки  
-На сервис написаны тесты   
-(для мока внешних сервисов можно использовать @mockbean или WireMock)   
-Для сборки должен использоваться Gradle  
-Результатом выполнения должен быть репо на GitHub с инструкцией по запуску  
-Nice to Have  
-Сборка и запуск Docker контейнера с этим сервисом
+Service on Spring Boot 2 + Java / Kotlin
+Requests come to the HTTP endpoint, the currency code is passed there
+Feign is used to interact with external services
+All parameters (currency in relation to which the rate is viewed,
+addresses of external services, etc.) are moved to the settings
+Tests written for the service
+(for mocking external services you can use @mockbean or WireMock)
+Gradle must be used to build
+The result of the execution should be a repo on GitHub with instructions for launching
+Nice to have
+Building and running a Docker container with this service
 ```  
-Создание образа и запуск контейнера
+Creating an Image and Running a Container
 ---
-В проекте настроена автоматизация создания образа и создания контейнера с помощью плагинов
-com.palantir.docker и com.palantir.docker-run, поэтому все что необходимо сделать
-это стянуть проект и последовательно запустить следующие две команды находясь в корневой директории
-проекта:
+The project is configured to automate image creation and container creation using plugins
+com.palantir.docker and com.palantir.docker-run so all you need to do is
+is to pull the project and run the following two commands in sequence from the root directory
+project:
 ```
 ./gradlew docker
 ./gradlew dockerRun
 ```
-Работа приложения
+Application
 ---
-После запуска контейнера нужно воспользоваться следующей ссылкой:
+After starting the container, you need to use the following link:
 ```
 http://localhost:8030/api/getgif/{currency code}
 ```
-где currency code - код валюты, например USD или TRY.
